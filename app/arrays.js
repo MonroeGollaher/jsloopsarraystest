@@ -4,6 +4,9 @@
 // output: ['is', 'a', 'split', 'sentence.', 'This']
 
 function rearranger(arr) {
+    arr.push(arr.shift())
+
+    return arr
 }
 
 
@@ -16,6 +19,18 @@ function rearranger(arr) {
 // output: 42
 
 function largestNum(arr) {
+
+    let largestNum = arr[0]
+
+    for (let i = 0; i < arr.length; i++) {
+    
+        if (largestNum < arr[i]){
+            largestNum = arr[i]
+        }
+    }
+
+    return largestNum
+
 }
 
 
@@ -28,6 +43,13 @@ function largestNum(arr) {
 // output: [16, 8, 4, 28]
 
 function elemsTimesLength(arr) {
+    let newArr = []
+
+    for (let i = 0; i < arr.length; i++) {
+        newArr.push(arr[i] * arr.length)
+    }
+
+    return newArr
 }
 
 
@@ -42,6 +64,16 @@ function elemsTimesLength(arr) {
 
 function arrayFlattener(arr) {
 
+    let flat = arr.flat(4)
+
+    console.log(flat)
+
+   for (let i = 0; i < flat.length; i++) {
+        if(typeof(flat[i]) == "object") {
+            flat.splice(i, 1,)
+        }
+   }
+    return flat
 }
 
 
@@ -75,9 +107,18 @@ let flights = [{
 
 
 function flightCost(destination, firstClass) {
-    //***hint: use the find method***
+    
+    for (let i = 0; i <= flights.length; i++) {
+        let purchased = flights[i].to;
+        if (purchased === destination.toUpperCase() && firstClass === true) {
+            return flights[i].prices.firstClass;
+        } else if (purchased === destination.toUpperCase()) {
+            return flights[i].prices.standard;
+        }
+    }
 
 }
+
 
 
 // ------------------------------------------
@@ -92,12 +133,26 @@ function flightCost(destination, firstClass) {
 // output: { error: "No user with that id." } 
 
 
-let staff = [{ id: 1, name: 'Jon' }, { id: 2, name: 'Yuli' }, { id: 21, name: 'Peter' },
-{ id: 17, name: 'St. MaryLou de la Playa Carmen' }, { id: 51, name: 'Doug' },
-{ id: 881, name: 'Paul' }, { id: 0, name: 'Jon' }, { id: 999, name: 'Timma' }]
+let staff = [
+    { id: 1, name: 'Jon' }, 
+    { id: 2, name: 'Yuli' }, 
+    { id: 21, name: 'Peter' },
+    { id: 17, name: 'St. MaryLou de la Playa Carmen' }, 
+    { id: 51, name: 'Doug' },
+    { id: 881, name: 'Paul' }, 
+    { id: 0, name: 'Jon' }, 
+    { id: 999, name: 'Timma' }]
 
 function findById(id) {
+    for (let i = 0; i < staff.length; i++) {
 
+        if (staff[i].id == id) {
+            return staff[i]
+        } else {}
+    }
+    return {
+        error: "No user with that id."
+    }
 }
 
 
@@ -124,4 +179,10 @@ let theBand = {
 }
 
 function bandMemberDetails(name) {
+    for (let i = 0; i < theBand.members.length; i++) {
+        let bandMember = theBand.members[i]
+        if (bandMember.name === name) {
+            return bandMember.name + " is in the band and plays the " + (bandMember.instrument);
+        }
+    }
 }
